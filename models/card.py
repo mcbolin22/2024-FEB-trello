@@ -18,6 +18,7 @@ class Card(db.Model):
     class CardSchema(ma.Schema):
 
         user = fields.Nested('UserSchema', only = ['name', 'email'])
+        
         class Meta:
 
             fields = ('id', 'title', 'description', 'date', 'status', 'priority', 'user')
