@@ -15,13 +15,14 @@ class Card(db.Model):
 
     user = db.relationship('User', back_populates='cards') # Uses class of user.py 
 
-    class CardSchema(ma.Schema):
+class CardSchema(ma.Schema):
 
-        user = fields.Nested('UserSchema', only = ['name', 'email'])
-        
-        class Meta:
+    user = fields.Nested('UserSchema', only = ['name', 'email'])
 
-            fields = ('id', 'title', 'description', 'date', 'status', 'priority', 'user')
+    class Meta:
 
-    card_schema = CardSchema()
-    cards_schema = CardSchema(many=True)
+        fields = ('id', 'title', 'description', 'date', 'status', 'priority', 'user')
+        ordered = True
+
+card_schema = CardSchema()
+cards_schema = CardSchema(many=True)
